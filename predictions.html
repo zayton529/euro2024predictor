@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>User Predictions</h1>
+    </header>
+    <section id="user-predictions">
+        <!-- Predictions will be populated here -->
+    </section>
+    <script>
+        fetch('/predictions')
+        .then(response => response.json())
+        .then(data => {
+            const predictionsDiv = document.getElementById('user-predictions');
+            data.forEach(user => {
+                const userDiv = document.createElement('div');
+                userDiv.innerHTML = `<h3>${user.username}</h3><p>${user.predictions.join(', ')}</p>`;
+                predictionsDiv.appendChild(userDiv);
+            });
+        })
+        .catch(err => {
+            console.error('Error:', err);
+        });
+    </script>
+</body>
+</html>
