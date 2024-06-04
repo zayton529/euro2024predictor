@@ -13,12 +13,40 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function generateKnockoutMatches(selectedGroups) {
-        matchesDiv.innerHTML = ""; // Clear previous matches
-        const matchPairs = Array.from(selectedGroups).map(input => input.value);
-        for (let i = 0; i < matchPairs.length; i += 2) {
-            const match = document.createElement("div");
-            match.className = "match";
-            match.innerHTML = `
-                <p>${matchPairs[i]} vs ${matchPairs[i + 1]}</p>
-                <label><input type="radio" name="match${i}" value="${matchPairs[i]}"> ${matchPairs[i]}</label>
-                <label><input type="radio" name="match${i}" value="${matchPairs[i +
+    matchesDiv.innerHTML = ""; // Clear previous matches
+    const matchPairs = Array.from(selectedGroups).map(input => input.value);
+    for (let i = 0; i < matchPairs.length; i += 2) {
+        const match = document.createElement("div");
+        match.className = "match";
+        match.innerHTML = `
+            <p>${matchPairs[i]} vs ${matchPairs[i + 1]}</p>
+            <label><input type="radio" name="match${i}" value="${matchPairs[i]}"> ${matchPairs[i]}</label>
+            <label><input type="radio" name="match${i}" value="${matchPairs[i + 1]}"> ${matchPairs[i + 1]}</label>
+        `;
+        matchesDiv.appendChild(match);
+    }
+}
+
+function savePredictions() {
+    const predictions = [];
+    document.querySelectorAll('#matches .match').forEach(match => {
+        const winner = match.querySelector('input[type="radio"]:checked');
+        if (winner) {
+            predictions.push(winner.value);
+        }
+    });
+    fetch('/predictions/save', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ predictions })
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+    })
+    .catch(err => {
+        console.error('Error:', err);
+    });
+}
