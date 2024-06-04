@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euro 2024 Predictor and Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Euro 2024 Predictor and Simulator</h1>
+        <p>Welcome to the ultimate Euro 2024 predictor and simulator! Predict the outcomes of every match and see how your favorite teams fare.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/register.html">Register</a></li>
+            <li><a href="/login.html">Login</a></li>
+            <li><a href="/predictions.html">View Predictions</a></li>
+        </ul>
+    </nav>
+
+    <section id="group-stage">
+        <h2>Group Stage Prediction</h2>
+        <!-- Repeat this div for each group (A-F) -->
+        <div class="group">
+            <h3>Group A</h3>
+            <ol>
+                <li><input type="text" placeholder="Team 1"></li>
+                <li><input type="text" placeholder="Team 2"></li>
+                <li><input type="text" placeholder="Team 3"></li>
+                <li><input type="text" placeholder="Team 4"></li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="knockout-stage">
+        <h2>Knockout Stage Selection</h2>
+        <p>Select 4 out of the 6 group winners to proceed to the knockout stage:</p>
+        <form id="knockout-selection">
+            <label><input type="checkbox" name="group-winner" value="Group A"> Group A Winner</label>
+            <label><input type="checkbox" name="group-winner" value="Group B"> Group B Winner</label>
+            <label><input type="checkbox" name="group-winner" value="Group C"> Group C Winner</label>
+            <label><input type="checkbox" name="group-winner" value="Group D"> Group D Winner</label>
+            <label><input type="checkbox" name="group-winner" value="Group E"> Group E Winner</label>
+            <label><input type="checkbox" name="group-winner" value="Group F"> Group F Winner</label>
+        </form>
+    </section>
+
+    <section id="results">
+        <h2>Knockout Stage Prediction</h2>
+        <p>Once the knockout stage is set, predict the outcomes of the matches:</p>
+        <div id="matches">
+            <!-- Placeholder for knockout matches -->
+        </div>
+        <button onclick="savePredictions()">Save Predictions</button>
+    </section>
+
+    <footer>
+        <p>Share your predictions with friends and join discussions with fellow football fans!</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
